@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-$users = ["Zasir", "Axel", "Chris"]; 
+$users = ["Zasir", "Axel", "Chris", "Renaud"]; 
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
