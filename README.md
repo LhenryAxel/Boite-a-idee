@@ -43,7 +43,7 @@ Setup
 
 Usage
 
-    Log in with usernames like "Zasir" or "Axel".
+    Log in with usernames like "Zasir" or "Axel" on index.php.
     Submit ideas on submit.php.
     View and vote on ideas on ideas.php.
     Logout via logout.php.
