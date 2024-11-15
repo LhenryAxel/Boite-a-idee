@@ -60,28 +60,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+<head><center>
     <meta charset="UTF-8">
-    <title>Liste des Idées</title>
+    <title>Liste des idées</title>
+    <script>
+        function showIdeaDetails(ideaId) {
+            const ideas = document.querySelectorAll('.idea-details');
+            ideas.forEach(idea => {
+                if (idea.dataset.id === ideaId) {
+                    idea.style.display = 'block';
+                } else {
+                    idea.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-    <h2>Liste des Idées</h2>
+    <h2>Liste des idées</h2>
+    <select onchange="showIdeaDetails(this.value)">
+        <option value="">Sélectionnez une idée</option>
+        <?php foreach ($ideas as $idea) : ?>
+            <option value="<?= $idea['id'] ?>"><?= htmlspecialchars($idea['title']) ?></option>
+        <?php endforeach; ?>
+    </select>
+
     <?php foreach ($ideas as $idea) : ?>
-        <div>
+        <div class="idea-details" data-id="<?= $idea['id'] ?>" style="display: none;">
             <h3><?= htmlspecialchars($idea['title']) ?></h3>
             <p><?= htmlspecialchars($idea['description']) ?></p>
-            <p>Par: <?= htmlspecialchars($idea['author']) ?>, le <?= htmlspecialchars($idea['created_date']) ?></p>
-            <p>Votes Positifs: <?= $idea['vote_positive'] ?> | Votes Negatifs: <?= $idea['vote_negative'] ?></p>
+            <p>Par : <?= htmlspecialchars($idea['author']) ?>, le <?= htmlspecialchars($idea['created_date']) ?></p>
+            <p>Votes positifs : <?= $idea['vote_positive'] ?> | Votes négatifs : <?= $idea['vote_negative'] ?></p>
 
             <form method="post" action="">
                 <input type="hidden" name="idea_id" value="<?= $idea['id'] ?>">
-                <button type="submit" name="vote_type" value="positive">Vote Positif</button>
+                <button type="submit" name="vote_type" value="positive">Vote positif</button>
                 <button type="submit" name="vote_type" value="negative">Vote négatif</button>
             </form>
         </div>
-        <hr>
     <?php endforeach; ?>
     
-    <p><a href="submit.php">Soumettre nouvelle idée</a> | <a href="logout.php">Déconnexion</a></p>
+    <div>
+        <a href="submit.php">Soumettre une nouvelle idée</a> | 
+        <a href="logout.php">Déconnexion</a>
+    </div>
 </body>
 </html>
+</center>

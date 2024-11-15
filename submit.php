@@ -21,6 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
+<center>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -38,3 +39,4 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <p><a href="ideas.php">Voir les idées</a> | <a href="logout.php">Déconnexion</a></p>
 </body>
 </html>
+</center>
